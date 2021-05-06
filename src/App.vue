@@ -1,33 +1,41 @@
 <template>
   <div>
     <LikeHeader>
-      <h2>みなさん</h2>
-      <template v-slot:title="slotProps">
-        <h2>こんにちは</h2>
-        <h2>{{ slotProps.user.firstName }}</h2>
-      </template>
       <h3>初めまして</h3>
-      <template v-slot:number>
-        <p>{{ number }}</p>
-      </template>
     </LikeHeader>
-    
     <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber>
-    <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber>
+    <button @click="currentComponent = 'Home'">Home</button>
+    <button @click="currentComponent = 'About'">About</button>
+    <keep-alive>
+      <component :is="currentComponent"></component>
+    </keep-alive>
+    <div>
+      <label for="title">タイトル</label>
+      <input id="title" type="text" v-model="eventData.title">
+      <p>{{ eventData.title }}</p>
+    </div>
   </div>
 </template>
 
 <script>
 import LikeHeader from "./components/LikeHeader.vue";
+import About from "./components/About.vue";
+import Home from "./components/Home.vue";
 
 export default {
   data() {
     return {
       number: 14,
+      currentComponent: "Home",
+      eventData: {
+        title: "タイトル"
+      }
     };
   },
   components: {
     LikeHeader,
+    About,
+    Home,
   },
 };
 </script>

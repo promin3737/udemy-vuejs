@@ -4,7 +4,6 @@
     <hr>
     <slot></slot>
     <p>いいねの数</p>
-    <slot name="number"></slot>
   </div>
 </template>
 
